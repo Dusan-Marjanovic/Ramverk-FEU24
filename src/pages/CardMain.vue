@@ -24,7 +24,7 @@ export default {
   justify-content: space-evenly;
 }
 .card {
-  width: 15vw;
+  width: 18vw;
 }
 .deck {
   width: 50vw;

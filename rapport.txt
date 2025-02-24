@@ -76,11 +76,11 @@ Jag trodde inte att det var någon skillnad eftersom "app" är ju "createApp(App
 
 1. Vad lärde du dig under projektets gång?
 
-Att arbeta med komponenter och hur smidigt det är. Router och alla delar i Vue samt Vite. I avancera övade vi på specifika delar men att lägga allting ihop 'made everyting click'
+Att arbeta med komponenter och hur smidigt det är. Router och alla delar i Vue samt Vite. I avancera övade vi på specifika delar men att lägga allting ihop 'made everyting click'.
 
 2. Om du skulle göra om projektet, vad skulle du göra annorlunda?
 
-Jag är ganska nöjd med hur mitt projekt blev till slut. Hade jag haft mer tid jag hade satsat lite mer på design. Funktionaliteten är jag nöjd med men jag hade även försökt att förbättra det. Att i App.vue inte ha något annat än #app utan jobba enbart i pages.
+Jag är ganska nöjd med hur mitt projekt blev till slut. Hade jag haft mer tid jag hade satsat lite mer på design. Funktionaliteten är jag nöjd med men jag hade även försökt att förbättra det samt effektivisera koden. Att i App.vue inte ha något annat än #app utan jobba enbart i pages.
 
 6. Egen kod och AI-användning
 
@@ -94,8 +94,24 @@ För att förstå vissa koncept och för troubleshooting. Jag har inte kopierat 
 
 3. Vilka delar av koden skrev du helt själv utan AI-assistans?
 
-Det mesta har jag skrivit själv. Det som jag behövde mest hjälp med var att dela in de olika korten i kategorier (som instant, sorcery, osv.) i komponenten DeckFetch. Jag visste inte riktigt hur jag skulle tänka kring det problemet så jag bad ChatGPTom hjälp för att skapa funktionen groupedDeck().
+Det mesta har jag skrivit själv. Det som jag behövde mest hjälp med var att dela in de olika korten i kategorier (som instant, sorcery, osv.) i komponenten DeckFetch. Jag visste inte riktigt hur jag skulle tänka kring det problemet så jag bad ChatGPTom hjälp för att komma fram till funktionen groupedDeck().
 
 7. Sammanfattning
 
 Beskriv kortfattat din process från idé till färdigt projekt.
+
+Jag visste att jag ville använda Scryfall API till projektet men visste inte riktigt vilken rikning jag skulle ta. Valde till slut att skapa en showcase till min kortlek.
+
+Jag började med att skapa en egen JSON fil med namn och antal för varje kort. Den filen är grunden till sidan. När jag hade en lista då la jag till routing för att kunna fetcha kortet man klickade på från Scryfall API.
+
+<router-link :to="'/' + encodeURIComponent(card.name)">
+
+Det som fetchas från Scryfall API är länken till bilden, länken till kortet på Scryfall sidan för att läsa mer, namnet och textrutan. Jag gjorde enkel styling.
+
+Allt fungerade fint men det var här jag insåg att jag behövde använda Vite. Efter installationen var det bara att göra om alla komponenter (som jag hade i en .js fil) till .vue komponenter.
+
+Efter det var det dags för att få till router view som jag gick igenom i fråga 4.
+
+Sen började jag jobba med typindelningen i listan. Första steget var att lägga in manuellt alla korttyper i den statiska JSON filen. Efter det skapade jag en beräknad egenskap för att sortera kortleken i olika arrays beroende på typ som sedan matas ut i templaten.
+
+Då var sidan i princip klar, så efter lite styling och mediaquerys blev jag klar med projektet.

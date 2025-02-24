@@ -20,6 +20,7 @@ export default {
   },
 
   mounted() {
+    //fetch card on load
     const cardName = this.$route.params.cardName;
     this.fetchCard(cardName);
   },
@@ -45,6 +46,7 @@ export default {
 img {
   border-radius: 0.5rem;
   width: 100%;
+  scale: 0.9;
   object-fit: cover;
 }
 
@@ -70,7 +72,7 @@ button:hover {
 .card-section {
   padding: 2rem;
   border-radius: 1rem;
-  width: 15vw;
+  width: 18vw;
   height: fit-content;
   position: sticky;
   top: 2vh;

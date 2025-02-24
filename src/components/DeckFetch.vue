@@ -7,7 +7,7 @@
       <ul class="card-list">
         <li class="card-item" v-for="card in group.cards" :key="card.name">
           <span class="card-amount"> {{ card.count }}</span>
-          <router-link :to="'/' + encodeURIComponent(card.name) + '#top'">
+          <router-link :to="'/' + encodeURIComponent(card.name)">
             {{ card.name }}
           </router-link>
         </li>
@@ -25,6 +25,7 @@ export default {
     };
   },
   computed: {
+    //make arrays for each different type
     groupedDeck() {
       const groups = {};
       this.deck.forEach((card) => {
@@ -48,6 +49,7 @@ export default {
           this.deck = result.deck;
         });
     },
+    //capitalize first letter
     capital(string) {
       return string ? string[0].toUpperCase() + string.slice(1) : "";
     },
