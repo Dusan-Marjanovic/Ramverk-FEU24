@@ -1,0 +1,101 @@
+Namn:
+Dusan Marjanovic
+
+Datum:
+24-02-2025
+
+Projektets namn:
+ManaFesto
+
+1. Projektets syfte och mål
+
+Beskriv kort vad ditt projekt gör och vilket problem det löser.
+
+En av mina intressen är kortspelet Magic (MTG) så jag valde att göra min sida utifrån det. Sidan är i princip en "showcase" av min kortlek som jag använder när jag spelar. Jag använde mig av Scryfall API som är väldigt utförlig.
+
+2. Struktur och tekniska val
+
+1. Hur strukturerade du ditt projekt (mappar, komponenter, state-hantering etc.)?
+
+Jag behöll strukturen som är default när man gör setup av Vue + Vite.
+Under 'src' har jag mappar till alla komponenter, sidor samt router inställningar.
+Mina komponenter är Template > Script > Style. Inom komponenten sker det mesta av stylingen. I router sidan som visar komponenten har jag haft lite styling men bara för placering.
+
+2. Varför valde du att strukturera det på detta sätt?
+
+Allt känns väl strukturerat och lätt att hitta, samt koppla de olika komponenter.
+
+3. Användning av Vue-koncept
+
+Jag tyckte om att använda vue. Prjektet känns mer strukturerat. Att man skapar separata komponenter och sen bara importera de.
+
+1. Vilka Vue-funktioner använde du (t.ex. v-bind, v-if, computed properties, props, custom events)?
+
+v-bind, v-if /else, props, v-for
+
+2. Varför valde du att använda dessa funktioner på det sätt du gjorde?
+
+v-bind:
+jag har använt v-bind på många olika sätt för att koppla dynamiska attribut. I DeckFetch komponenten har jag använt det för att skapa länkar för varje kort (:to) och för att säkerställa att rätt kort visas (:key). I CardFetch har jag använt det för att koppla bilden till rätt fetchad URI (:src) och länka till Scryfall om man vill läsa mer om kortet (:href)
+
+v-if/else:
+Det använde jag främst i CardFetch. Delvis för att visa att kortet man klickade på håller på att ladda (fetchas) och delvis för att fetch är en asynkron funktion och utan v-if visades inte någonting. v-if gjorde det möjligt att "gömma" vissa delar i komponenten till datan fetchade färdigt.
+
+props:
+Jag hade egentligen inte användning av prop i just detta projekt men det var en del av kravet så jag implementerade det i komponenten NavBar. Använde det för att kunna ändra på sidans logga via en prop i App.vue
+
+v-for:
+Använde det i DeckFetch för att visa hela kortleken.
+
+
+4. Utmaningar och lösningar
+
+1. Vilka var de största utmaningarna du stötte på under projektet?
+
+1 Läsförståelse... I början av projektet missade jag att jag behövde använda Vite så efter  att ha gjort en del insåg jag mitt misstag.
+2 En annan utmaning var att få till router att fungera.
+
+2. Hur löste du dessa utmaningar?
+
+1 Jag fick börja om projektet, men det gick ändå smidigt eftersom jag behövde bara anpassa de komponenter som jag hade skapat tidigare till .vue formatet och importera de i projektet.
+2 Jag lyckades inte att få router att fungera även fast allt verkade vara rätt. Efter många timmar kom jag fram till felet. Istället för att skriva:
+
+const app = createApp(App);
+
+app.use(router);
+app.mount("#app");
+
+skrev jag:
+
+createApp(App).use(router);
+createApp(App).mount("#app");
+
+Jag trodde inte att det var någon skillnad eftersom "app" är ju "createApp(App)", men det visade sig att genom att ha "createApp(App)" två gånger så startas två instanser av Vue, och bara den senaste är den som är aktiv. Alltså hade jag ingen router. Efter att ha ändrat det så funkade allt som det skulle.
+
+5. Lärdomar och förbättringar
+
+1. Vad lärde du dig under projektets gång?
+
+Att arbeta med komponenter och hur smidigt det är. Router och alla delar i Vue samt Vite. I avancera övade vi på specifika delar men att lägga allting ihop 'made everyting click'
+
+2. Om du skulle göra om projektet, vad skulle du göra annorlunda?
+
+Jag är ganska nöjd med hur mitt projekt blev till slut. Hade jag haft mer tid jag hade satsat lite mer på design. Funktionaliteten är jag nöjd med men jag hade även försökt att förbättra det. Att i App.vue inte ha något annat än #app utan jobba enbart i pages.
+
+6. Egen kod och AI-användning
+
+1. Har du använt AI för att få hjälp i projektet? (Exempelvis ChatGPT, Copilot, Bard etc.)
+
+Jag har använt ChatGPT.
+
+2. Om ja, hur använde du AI och hur säkerställde du att du förstod och kunde motivera koden?
+
+För att förstå vissa koncept och för troubleshooting. Jag har inte kopierat någon kod rakt av, utan när jag fastade så bad jag ChatGPT att förklara vad som saknades/var fel. Målet var att förstå vad felet var och inte att få projektet klart.
+
+3. Vilka delar av koden skrev du helt själv utan AI-assistans?
+
+Det mesta har jag skrivit själv. Det som jag behövde mest hjälp med var att dela in de olika korten i kategorier (som instant, sorcery, osv.) i komponenten DeckFetch. Jag visste inte riktigt hur jag skulle tänka kring det problemet så jag bad ChatGPTom hjälp för att skapa funktionen groupedDeck().
+
+7. Sammanfattning
+
+Beskriv kortfattat din process från idé till färdigt projekt.
